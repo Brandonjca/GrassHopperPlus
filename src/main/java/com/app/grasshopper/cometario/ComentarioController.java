@@ -1,4 +1,4 @@
-package com.app.grasshopper.perfil;
+package com.app.grasshopper.cometario;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,46 +13,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/perfil")
+@RequestMapping("api/comentario")
 @CrossOrigin({"*"})
-public class PerfilController {
+public class ComentarioController {
     
     @Autowired
-    private PerfilService perfilService;
+    private ComentarioService comentarioService;
 
-    //CREAR
-
+    //CREAR 
     @PostMapping("/")
-    public Perfil save(@RequestBody Perfil entity) {
-        return perfilService.save(entity);
+    public Comentario save(@RequestBody Comentario entity){
+        return comentarioService.save(entity);
     }
-
 
     //BUSCAR POR ID
 
     @GetMapping("/{id}/")
-    public Perfil findById(@PathVariable long id){
-        return perfilService.findById(id);
+    public Comentario findById(@PathVariable long id) {
+        return comentarioService.findById(id);
     }
-
-    //ACTUALIZAR
 
     @PutMapping("/")
-    public Perfil update(@RequestBody Perfil entity){
-        return perfilService.save(entity);
+    public Comentario update(@RequestBody Comentario entity){
+        return comentarioService.save(entity);
     }
-
-    //ELIMINAR POR ID
 
     @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable long id){
-        perfilService.deleteById(id);
+        comentarioService.deleteById(id);
     }
-
-    //BUSCAR TODO
-
     @GetMapping("/")
-    public List<Perfil> findAll() {
-        return perfilService.findAll();
+    public List<Comentario> findAll(){
+        return comentarioService.findAll();
     }
 }

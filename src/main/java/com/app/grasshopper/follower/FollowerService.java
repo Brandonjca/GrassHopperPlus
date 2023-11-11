@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FollowerService {
-@Autowired
+    @Autowired
     private FollowerRepository followerRepository;
 
     // CREATE
@@ -14,22 +14,20 @@ public class FollowerService {
         return followerRepository.save(entity);
     }
 
-    //READ  
-    public Follower findByiId(long id){
+    // READ
+    public Follower findByiId(long id) {
         return followerRepository.findById(id).orElse(null);
     }
 
-     //UPDATE UTILIZA EL METODO DE CREATE
+    // UPDATE UTILIZA EL METODO DE CREATE
 
-
-     //DELETE
-     public void deleteById(long id){
+    // DELETE
+    public void deleteById(long id) {
         followerRepository.deleteById(id);
     }
 
-    //SELECT ALL
-     public List<Follower> findAll(){
+    // SELECT ALL
+    public List<Follower> findAll() {
         return followerRepository.findAll();
-    } 
+    }
 }
-

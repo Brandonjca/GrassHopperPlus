@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 public class Perfil {
-    @GeneratedValue(strategy=(GenerationType.AUTO))
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Id
     private long id;
     private String bannerpicture;

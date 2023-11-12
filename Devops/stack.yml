@@ -17,7 +17,7 @@ services:
     environment:
       - TZ=America/Guayaquil
       - POSTGRES_DB=grasshopperdb
-      - POSTGRES_PASSWORD=ESSKEETIT1
+      - POSTGRES_PASSWORD=12345
       - POSTGRES_USER=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:

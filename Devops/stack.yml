@@ -25,14 +25,14 @@ services:
     networks:
       - tendencias_net
             
-    volumes:
-      pg_pi_grasshopper_data:
-        external: true
+volumes:
+  pg_pi_grasshopper_data:
+    external: true
 
-    networks:
-      tendencias_net:
-        external: true
+networks:
+  tendencias_net:
+    external: true
 
-    secrets:
-      db_dev_pass:
-        external: true  
+secrets:
+  db_dev_pass:
+    external: true  

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mybackend:
-    image: grasshopperPI:1
+    image: grasshopperpi:1
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     ports:

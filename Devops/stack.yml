@@ -11,7 +11,7 @@ services:
         protocol: tcp
         mode: host
     networks:
-      - tendencias_net
+      - desarrollo_net
   mydatabase:
     image: postgres:15.0-bullseye
     environment:
@@ -23,14 +23,14 @@ services:
     volumes:
       - pg_pi_grasshopper_data:/var/lib/postgresql/data/pgdata
     networks:
-      - tendencias_net
+      - desarrollo_net
             
 volumes:
   pg_pi_grasshopper_data:
     external: true
 
 networks:
-  tendencias_net:
+  desarrollo_net:
     external: true
 
 secrets:

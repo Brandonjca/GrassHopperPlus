@@ -20,19 +20,19 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
-  volumes:
-        - pg_pi_grasshopper_data:/var/lib/postgresql/data/pgdata
-      networks:
-        - tendencias_net
+    volumes:
+      - pg_pi_grasshopper_data:/var/lib/postgresql/data/pgdata
+    networks:
+      - tendencias_net
             
-  volumes:
-    pg_pi_grasshopper_data:
-      external: true
+    volumes:
+      pg_pi_grasshopper_data:
+        external: true
 
-  networks:
-    tendencias_net:
-      external: true
+    networks:
+      tendencias_net:
+        external: true
 
-  secrets:
-    db_dev_pass:
-      external: true  
+    secrets:
+      db_dev_pass:
+        external: true  

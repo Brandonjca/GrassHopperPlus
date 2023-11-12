@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mybackend:
+    image: grasshopperPI:1
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - target: 8083
+        published: 8083
+        protocol: tcp
+        mode: host
+    networks:
+      - tendencias_net
+  mydatabase:
+    image: postgres:15.0-bullseye
+    environment:
+      - TZ=America/Guayaquil
+      - POSTGRES_DB=grasshopperdb
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  volumes:
+        - pg_pi_grasshopper_data:/var/lib/postgresql/data/pgdata
+      networks:
+        - tendencias_net
+            
+  volumes:
+    pg_pi_grasshopper_data:
+      external: true
+
+  networks:
+    tendencias_net:
+      external: true
+
+  secrets:
+    db_dev_pass:
+      external: true  

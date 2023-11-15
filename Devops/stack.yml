@@ -15,13 +15,11 @@ services:
   mydatabase:
     image: postgres:15.0-bullseye
     environment:
-      - TZ=America/Guayaquil
       - POSTGRES_DB=grasshopperdb
       - POSTGRES_PASSWORD=ESSKEETIT1
       - POSTGRES_USER=postgres
-      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - pg_pi_grasshopper_data:/var/lib/postgresql/data/pgdata
+      - pg_pi_grasshopper_data:/var/lib/postgresql/data
     networks:
       - desarrollo_net
             

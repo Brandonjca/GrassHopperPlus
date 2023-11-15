@@ -12,6 +12,8 @@ services:
         mode: host
     networks:
       - desarrollo_net
+    depends_on:
+      - mydatabase 
   mydatabase:
     image: postgres:15.0-bullseye
     environment:

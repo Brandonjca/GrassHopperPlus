@@ -6,14 +6,11 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     ports:
-      - target: 8083
-        published: 8083
-        protocol: tcp
-        mode: host
+      - "8083:8083"
     networks:
       - desarrollo_net
     depends_on:
-      - mydatabase 
+      - mydatabase  
   mydatabase:
     image: postgres:15.0-bullseye
     environment:

@@ -10,7 +10,7 @@ services:
     networks:
       - desarrollo_net
     depends_on:
-      - mydatabase  
+      - mydatabase
   mydatabase:
     image: postgres:15.0-bullseye
     environment:
@@ -18,7 +18,7 @@ services:
       - POSTGRES_PASSWORD=ESSKEETIT1
       - POSTGRES_USER=postgres
     volumes:
-      - pg_pi_grasshopper_data:/var/lib/postgresql/data
+      - pg_pi_grasshopper_data:/var/lib/postgresql/data/
     networks:
       - desarrollo_net
             

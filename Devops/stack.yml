@@ -1,7 +1,20 @@
 version: '3.8'
 
 services:
+    mydatabase:
+    image: postgres:11.22-alpine3.18
+    environment:
+      POSTGRES_DB: grasshopperdb
+      POSTGRES_PASSWORD: ESSKEETIT1
+      POSTGRES_USER: postgres
+    volumes:
+      - pg_pi_grasshopper_data:/var/lib/postgresql/data
+    networks:
+      - desarrollo_net
+
   mybackend:
+    depends_on:
+      - mydatabase
     image: grasshopperpi:1
     environment:
       - SPRING_PROFILES_ACTIVE=prod
@@ -9,22 +22,10 @@ services:
       - "8083:8083"
     networks:
       - desarrollo_net
-    depends_on:
-      - mydatabase
-  mydatabase:
-    image: postgres:15.0-bullseye
-    environment:
-      - POSTGRES_DB=grasshopperdb
-      - POSTGRES_PASSWORD=ESSKEETIT1
-      - POSTGRES_USER=postgres
-    volumes:
-      - pg_pi_grasshopper_data:/var/lib/postgresql/data/
-    networks:
-      - desarrollo_net
-            
+
 volumes:
   pg_pi_grasshopper_data:
-    external: true
+    external: false
 
 networks:
   desarrollo_net:

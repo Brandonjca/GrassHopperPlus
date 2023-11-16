@@ -3,6 +3,6 @@ build-image:
 volume:
     @ docker volume create pg_pi_grasshopper_data
 deploy:
-    @ docker stack deploy --with-registry-auth -c Devops/stack.yml grasshopperpi
+    @ docker stack deploy --with-registry-auth -c Devops/stack.yml grasshopperpi:1
 rm:
     @ docker stack rm grasshopperpi

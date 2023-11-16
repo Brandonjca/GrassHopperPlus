@@ -10,7 +10,7 @@ services:
     volumes:
       - pg_pi_grasshopper_data:/var/lib/postgresql/data
     networks:
-      - desarrollo_net
+      - grasshopperpi_net
 
   mybackend:
     depends_on:
@@ -21,14 +21,14 @@ services:
     ports:
       - "8083:8083"
     networks:
-      - desarrollo_net
+      - grasshopperpi_net
 
 volumes:
   pg_pi_grasshopper_data:
     external: false
 
 networks:
-  desarrollo_net:
+  grasshopperpi_net:
     external: true
 
 secrets:

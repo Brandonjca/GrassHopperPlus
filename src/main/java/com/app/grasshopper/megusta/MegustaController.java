@@ -1,11 +1,11 @@
-package com.app.grasshopper.like;
+package com.app.grasshopper.megusta;
 
 import java.util.List;
 import java.util.Map;
 import java.lang.reflect.Field;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,57 +21,51 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @RestController
-@RequestMapping("/api/like")
-@CrossOrigin({ "*" })
-public class LikeController {
+@RequestMapping("/api/entidad")
+@CrossOrigin({"*"})
+public class MegustaController {
 
     @Autowired
-    LikeService service;
+    MegustaService service;
 
-    @PreAuthorize("getlike_permission")
     @GetMapping("/{id}/")
-    public Like findById(@PathVariable long id) {
+    public Megusta findById( @PathVariable long id ){
         return service.findById(id);
     }
 
-    @PreAuthorize("getalllike_permission")
     @GetMapping("/")
-    public List<Like> findAll() {
+    public List<Megusta> findAll() {
         return service.findAll();
     }
 
-    @PreAuthorize("postlike_permission")
     @PostMapping("/")
-    public Like save(@RequestBody Like entitiy) {
+    public Megusta save( @RequestBody Megusta entitiy ){
         return service.save(entitiy);
     }
-
-    @PreAuthorize("putlike_permission")
+    
     @PutMapping("/")
-    public Like update(@RequestBody Like entity) {
+    public Megusta update ( @RequestBody Megusta entity){
         return service.save(entity);
     }
 
-    @PreAuthorize("deletelike_permission")
     @DeleteMapping("/{id}/")
-    public void deleteById(@PathVariable long id) {
+    public void deleteById( @PathVariable long id ){
         service.deleteById(id);
     }
 
-    @PreAuthorize("patchlike_permission")
-    @PatchMapping("/{id}/")
-    public Like partialUpdate(@PathVariable long id, @RequestBody Map<String, Object> fields) {
+      @PatchMapping("/{id}/")
+    public Megusta partialUpdate(@PathVariable long id, @RequestBody Map<String, Object> fields){
 
-        Like entity = findById(id);
+        Megusta entity = findById(id);
 
         // itera sobre los campos que se desean actualizar
         for (Map.Entry<String, Object> field : fields.entrySet()) {
             String fieldName = field.getKey();
             Object fieldValue = field.getValue();
-
+            
             // utiliza reflection para establecer el valor del campo en la entidad
             try {
-                Field campoEntidad = Like.class.getDeclaredField(fieldName);
+                Field campoEntidad = Megusta.class.getDeclaredField(fieldName);
                 campoEntidad.setAccessible(true);
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.registerModule(new JavaTimeModule());

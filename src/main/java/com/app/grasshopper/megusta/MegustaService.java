@@ -1,4 +1,4 @@
-package com.app.grasshopper.like;
+package com.app.grasshopper.megusta;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
     
 @Service
-public class LikeService {
+public class MegustaService {
     @Autowired
-    LikeRepository repository;
+    MegustaRepository repository;
     
-    public Like save( Like entity ){
+    public Megusta save( Megusta entity ){
         return repository.save(entity);
     }
     
@@ -18,11 +18,11 @@ public class LikeService {
         repository.deleteById(id);
     }
     
-    public Like findById(Long id){
+    public Megusta findById(Long id){
         return repository.findById(id).orElse(null);
     }
     
-    public List<Like> findAll(){
+    public List<Megusta> findAll(){
         return repository.findAll();
     }
     

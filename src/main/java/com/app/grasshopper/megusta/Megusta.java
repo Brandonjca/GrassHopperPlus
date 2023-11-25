@@ -1,4 +1,4 @@
-package com.app.grasshopper.like;
+package com.app.grasshopper.megusta;
 
 import com.app.grasshopper.publication.Publication;
 
@@ -8,14 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
-
+        
 @Data
 @Entity
-public class Like {
+public class Megusta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private long id;
+    private long Id;
 
-    @ManyToOne
-    private Publication publication;
+    @ManyToOne Publication publication;
+            
 }

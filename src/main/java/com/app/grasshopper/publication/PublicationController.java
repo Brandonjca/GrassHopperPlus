@@ -20,30 +20,30 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("api/publication")
 @CrossOrigin({ "*" })
 public class PublicationController {
-   
+
     @Autowired
     private PublicationServicio publicationServicio;
 
     @Operation(summary = "Permite realizar plublicaciones")
-        @PreAuthorize("postpublication_permission")
+    @PreAuthorize("hasAuthority('postpublication_permission')")
 
-    @PostMapping("/") 
+    @PostMapping("/")
     public Publication save(@RequestBody Publication entity) {
         return publicationServicio.save(entity);
     }
 
     // Para el metodo read
-        @Operation(summary = "Trae la publicacion por ID")
-        @PreAuthorize("getpublication_permission")
+    @Operation(summary = "Trae la publicacion por ID")
+    @PreAuthorize("hasAuthority('getonepublication_permission')")
 
-    @GetMapping("/{id}/") 
+    @GetMapping("/{id}/")
     public Publication findById(@PathVariable int id) {
         return publicationServicio.findByiId(id);
     }
 
     // UPDATE
-        @Operation(summary = "Actualiza las publicaciones")
-        @PreAuthorize("putpublication_permission")
+    @Operation(summary = "Actualiza las publicaciones")
+    @PreAuthorize("hasAuthority('updatepublication_permission')")
 
     @PutMapping("/")
     public Publication update(@RequestBody Publication entity) {
@@ -52,20 +52,19 @@ public class PublicationController {
 
     // DELETE
     @Operation(summary = "elimina las publicaciones")
-        @PreAuthorize("deletepublication_permission")
+    @PreAuthorize("hasAuthority('deletepublication_permission')")
 
-    @DeleteMapping("/{id}/") 
+    @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable int id) {
         publicationServicio.deleteById(id);
     }
 
     // SELECT ALL
-        @Operation(summary = "trae todas las publicaciones")
-        @PreAuthorize("getallpublication_permission")
+    @Operation(summary = "trae todas las publicaciones")
+    @PreAuthorize("hasAuthority('getallpublication_permission')")
 
     @GetMapping("/")
     public List<Publication> findAll() {
         return publicationServicio.findAll();
     }
 }
-

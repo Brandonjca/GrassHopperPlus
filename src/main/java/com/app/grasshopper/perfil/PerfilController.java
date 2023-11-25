@@ -42,15 +42,16 @@ public class PerfilController {
     }
 
     // ACTUALIZAR
-    @PreAuthorize("updateperfil_permission")
-
+   @Operation(summary = "Actualiza el peril")
+    @PreAuthorize("hasAuthority('uodateperfil_permission')")
     @PutMapping("/")
     public Perfil update(@RequestBody Perfil entity) {
         return perfilService.save(entity);
     }
 
     // ELIMINAR POR ID
-    @PreAuthorize("deleteperfil_permission")
+       @Operation(summary = "Elimina un perfil")
+    @PreAuthorize("hasAuthority('deleteperfil_permission')")
 
     @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable long id) {
@@ -59,8 +60,8 @@ public class PerfilController {
 
     // BUSCAR TODO
 
-    @PreAuthorize("getallperfil_permission")
-
+   @Operation(summary = "Muestra todos los usuarios")
+    @PreAuthorize("hasAuthority('getallperfil_permission')")
     @GetMapping("/")
     public List<Perfil> findAll() {
         return perfilService.findAll();

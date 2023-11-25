@@ -27,21 +27,21 @@ public class SavedController {
     SavedService service;
 
     @Operation(summary = "Guarda un Saved")
-    @PreAuthorize("postsaved_permission")
+    @PreAuthorize("hasAuthority('postsaved_permission')")
     @PostMapping("/")
     public Saved save( @RequestBody Saved entitiy ){
         return service.save(entitiy);
     }
 
     @Operation(summary = "Lista un Saved")
-    @PreAuthorize("listsaved_permission")
+    @PreAuthorize("hasAuthority('listsaved_permission')")
     @GetMapping("/")
     public List<Saved> findAll() {
         return service.findAll();
     }
 
     @Operation(summary = "Trae un Saved por id")
-    @PreAuthorize("idsaved_permission")
+    @PreAuthorize("hasAuthority('idsaved_permission')")
     @GetMapping("/{id}/")
     public Saved findById( @PathVariable long id ){
         return service.findById(id);
@@ -49,7 +49,8 @@ public class SavedController {
 
 
     @Operation(summary = "Elimina un Saved por id")
-    @PreAuthorize("deletesaved_permission")    @DeleteMapping("/{id}/")
+    @PreAuthorize("hasAuthority('deletesaved_permission')")
+    @DeleteMapping("/{id}/")
     public void deleteById( @PathVariable long id ){
         service.deleteById(id);
     }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("api/perfil")
 @CrossOrigin({ "*" })
@@ -23,15 +25,17 @@ public class PerfilController {
 
     // CREAR
 
+    @Operation(summary = "Crea un nuevo usuario")
+    @PreAuthorize("hasAuthority('postperfil_permission')")
     @PostMapping("/")
-    @PreAuthorize("postperfil_permission")
+
     public Perfil save(@RequestBody Perfil entity) {
         return perfilService.save(entity);
     }
 
     // BUSCAR POR ID
-    @PreAuthorize("getperfil_permission")
-
+    @Operation(summary = "Busca un usuario por ID")
+    @PreAuthorize("hasAuthority('getoneperfil_permission')")
     @GetMapping("/{id}/")
     public Perfil findById(@PathVariable long id) {
         return perfilService.findById(id);
@@ -54,7 +58,7 @@ public class PerfilController {
     }
 
     // BUSCAR TODO
-    
+
     @PreAuthorize("getallperfil_permission")
 
     @GetMapping("/")

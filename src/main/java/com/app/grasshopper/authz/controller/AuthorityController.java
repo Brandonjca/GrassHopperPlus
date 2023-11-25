@@ -27,7 +27,6 @@ public class AuthorityController {
 
     @Autowired
     AuthorityService authorityService;
-
     @Operation(summary = "Obtiene un permiso por su id, Requiere Authority_Read")
     @PreAuthorize("hasAuthority('Authority_Read')")
     @GetMapping("/{id}/")

@@ -1,6 +1,7 @@
 package com.app.grasshopper.follower;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,30 +21,40 @@ public class FollowerController {
     @Autowired
     private FollowerService followerService;
 
-    @PostMapping("/") 
+    @PreAuthorize("postfollow_permission")
+
+    @PostMapping("/")
     public Follower save(@RequestBody Follower entity) {
         return followerService.save(entity);
     }
 
     // Para el metodo read
-    @GetMapping("/{id}/") 
+        @PreAuthorize("readfollow_permission")
+
+    @GetMapping("/{id}/")
     public Follower findById(@PathVariable int id) {
         return followerService.findByiId(id);
     }
 
     // UPDATE
+        @PreAuthorize("updatefollow_permission")
+
     @PutMapping("/")
     public Follower update(@RequestBody Follower entity) {
         return followerService.save(entity);
     }
 
     // DELETE
-    @DeleteMapping("/{id}/") 
+        @PreAuthorize("deletefollow_permission")
+
+    @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable int id) {
         followerService.deleteById(id);
     }
 
     // SELECT ALL
+        @PreAuthorize("readallfollow_permission")
+
     @GetMapping("/")
     public List<Follower> findAll() {
         return followerService.findAll();

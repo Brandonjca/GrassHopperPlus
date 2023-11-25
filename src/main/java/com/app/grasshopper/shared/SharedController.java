@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/shared")
 @CrossOrigin({"*"})
@@ -28,32 +31,46 @@ public class SharedController {
     @Autowired
     SharedService service;
 
+    @Operation(summary = "Obtiene un por Id")
+    @PreAuthorize("getshared_permission")
     @GetMapping("/{id}/")
     public Shared findById( @PathVariable long id ){
         return service.findById(id);
     }
 
+
+    @Operation(summary = "Obtiene una lista")
+    @PreAuthorize("listshared_permission")
     @GetMapping("/")
     public List<Shared> findAll() {
         return service.findAll();
     }
 
+    @Operation(summary = "Crea un Shared")
+    @PreAuthorize("postshared_permission")
     @PostMapping("/")
     public Shared save( @RequestBody Shared entitiy ){
         return service.save(entitiy);
     }
-    
+
+    @Operation(summary = "Actualiza un Shared")
+    @PreAuthorize("updateshared_permission")
     @PutMapping("/")
     public Shared update ( @RequestBody Shared entity){
         return service.save(entity);
     }
 
+
+    @Operation(summary = "Elimina un Shared por Id")
+    @PreAuthorize("deleteshared_permission")
     @DeleteMapping("/{id}/")
     public void deleteById( @PathVariable long id ){
         service.deleteById(id);
     }
 
-      @PatchMapping("/{id}/")
+    @Operation(summary = "Actualiza un Shared por Id")
+    @PreAuthorize("patchshared_permission")
+    @PatchMapping("/{id}/")
     public Shared partialUpdate(@PathVariable long id, @RequestBody Map<String, Object> fields){
 
         Shared entity = findById(id);

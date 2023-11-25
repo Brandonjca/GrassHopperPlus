@@ -32,7 +32,7 @@ public class SharedController {
     SharedService service;
 
     @Operation(summary = "Obtiene un por Id")
-    @PreAuthorize("getshared_permission")
+    @PreAuthorize("hasAuthority('getshared_permission')")
     @GetMapping("/{id}/")
     public Shared findById( @PathVariable long id ){
         return service.findById(id);
@@ -40,21 +40,21 @@ public class SharedController {
 
 
     @Operation(summary = "Obtiene una lista")
-    @PreAuthorize("listshared_permission")
+    @PreAuthorize("hasAuthority('listshared_permission')")
     @GetMapping("/")
     public List<Shared> findAll() {
         return service.findAll();
     }
 
     @Operation(summary = "Crea un Shared")
-    @PreAuthorize("postshared_permission")
+    @PreAuthorize("hasAuthority('postshared_permission')")
     @PostMapping("/")
     public Shared save( @RequestBody Shared entitiy ){
         return service.save(entitiy);
     }
 
     @Operation(summary = "Actualiza un Shared")
-    @PreAuthorize("updateshared_permission")
+    @PreAuthorize("hasAuthority('updateshared_permission')")
     @PutMapping("/")
     public Shared update ( @RequestBody Shared entity){
         return service.save(entity);
@@ -62,14 +62,14 @@ public class SharedController {
 
 
     @Operation(summary = "Elimina un Shared por Id")
-    @PreAuthorize("deleteshared_permission")
+    @PreAuthorize("hasAuthority('deleteshared_permission')")
     @DeleteMapping("/{id}/")
     public void deleteById( @PathVariable long id ){
         service.deleteById(id);
     }
 
     @Operation(summary = "Actualiza un Shared por Id")
-    @PreAuthorize("patchshared_permission")
+    @PreAuthorize("hasAuthority('patchshared_permission')")
     @PatchMapping("/{id}/")
     public Shared partialUpdate(@PathVariable long id, @RequestBody Map<String, Object> fields){
 

@@ -1,3 +1,18 @@
+INSERT INTO authorities (name, endpoint) values ('getshared_permission', 'GET:/api/share/{id}/');
+INSERT INTO authorities (name, endpoint) values ('listshared_permission', 'GET:/api/share/');
+INSERT INTO authorities (name, endpoint) values ('postshared_permission', 'POST:/api/share/');
+INSERT INTO authorities (name, endpoint) values ('updateshared_permission', 'PUT:/api/share/');
+INSERT INTO authorities (name, endpoint) values ('deleteshared_permission', 'DELETE:/api/share/{id}/');
+INSERT INTO authorities (name, endpoint) values ('patchshared_permission', 'POST:/api/share/{id}/');
+
+
+INSERT INTO authorities (name, endpoint) values ('postsaved_permission', 'POST:/api/guardado/');
+INSERT INTO authorities (name, endpoint) values ('listsaved_permission', 'GET:/api/guardado/');
+INSERT INTO authorities (name, endpoint) values ('idsaved_permission', 'GET:/api/guardado/{id}/');
+INSERT INTO authorities (name, endpoint) values ('deletesaved_permission', 'DELETE:/api/guardado/{id}/');
+
+
+
 INSERT INTO authorities (name, endpoint) values ('User_Write', 'POST:/api/user/');
 INSERT INTO authorities (name, endpoint) values ('User_Read', 'GET:/api/user/');
 INSERT INTO authorities (name, endpoint) values ('UserById_Read', 'GET:/api/user/{id}/');

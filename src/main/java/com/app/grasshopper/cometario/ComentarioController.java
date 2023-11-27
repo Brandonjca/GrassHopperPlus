@@ -13,42 +13,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("api/comentario")
 @CrossOrigin({ "*" })
+@Tag(name = "Controlador comments (comentarios) ", description = "Tabla comment")
 public class ComentarioController {
 
     @Autowired
     private ComentarioService comentarioService;
 
     // CREAR
-    @PreAuthorize("postcomment_permission")
+    @Operation(summary = "Guarda un comentario con su descripcion, Requiere postcomment_permission")
+    @PreAuthorize("hasAuthority('postcomment_permission')")
     @PostMapping("/")
     public Comentario save(@RequestBody Comentario entity) {
         return comentarioService.save(entity);
     }
 
     // BUSCAR POR ID
-    @PreAuthorize("searchcomment_permission")
+    @Operation(summary = "Obtiene un comentario por su id, Requiere searchcomment_permission")
+    @PreAuthorize("hasAuthority('searchcomment_permission')")
     @GetMapping("/{id}/")
     public Comentario findById(@PathVariable long id) {
         return comentarioService.findById(id);
     }
 
-    @PreAuthorize("putcomment_permission")
+    @Operation(summary = "Actualiza la descripción de un comentario, Requiere putcomment_permission")
+    @PreAuthorize("hasAuthority('putcomment_permission')")
     @PutMapping("/")
     public Comentario update(@RequestBody Comentario entity) {
         return comentarioService.save(entity);
     }
 
-    @PreAuthorize("deletecomment_permission")
-
+    @Operation(summary = "Elimina un comentario por su id, Requiere deletecomment_permission")
+    @PreAuthorize("hasAuthority('deletecomment_permission')")
     @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable long id) {
         comentarioService.deleteById(id);
     }
 
-    @PreAuthorize("getallcomment_permission")
+    @Operation(summary = "Obtiene todos los comentarios, Requiere getallcomment_permission")
+    @PreAuthorize("hasAuthority('getallcomment_permission')")
     @GetMapping("/")
     public List<Comentario> findAll() {
         return comentarioService.findAll();

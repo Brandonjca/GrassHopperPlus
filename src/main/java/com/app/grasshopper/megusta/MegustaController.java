@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/api/entidad")
+@RequestMapping("/api/megusta")
 @Tag(name = "Controlador Me Gusta (Me Gusta) ", description = "Tabla Me Gusta")
 @CrossOrigin({"*"})
 public class MegustaController {

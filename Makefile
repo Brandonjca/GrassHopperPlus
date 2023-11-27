@@ -1,5 +1,5 @@
 build-image:
-    @ docker build -f Devops/Dockerfile -t grasshopperpi:1 .
+    @ docker build -f Devops/Dockerfile -t grasshopperpi:1 . --no-cache
 volume:
     @ docker volume create pg_pi_grasshopper_data
 deploy:
